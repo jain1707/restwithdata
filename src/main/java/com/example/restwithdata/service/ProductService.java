@@ -1,8 +1,10 @@
 package com.example.restwithdata.service;
 
+import com.amazonaws.services.s3.AmazonS3;
 import com.example.restwithdata.entity.Product;
 import com.example.restwithdata.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -80,7 +82,7 @@ public class ProductService {
 
     }
 
-
-
-
+    public void setRepo(ProductRepository repo) {
+        this.repo = repo;
+    }
 }
