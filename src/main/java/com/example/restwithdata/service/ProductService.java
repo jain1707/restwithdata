@@ -1,6 +1,7 @@
 package com.example.restwithdata.service;
 
 import com.example.restwithdata.model.Product;
+import com.example.restwithdata.processing.ProductProcessing;
 import com.example.restwithdata.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -19,24 +20,25 @@ public class ProductService implements Service<Response,Product,Long> {
     @Autowired
     ProductRepository repo;
 
+    @Autowired
+    ProductProcessing pros;
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Cacheable
     public Response getAll(){
-        Iterable<Product> list = repo.findAll();
+        Iterable<Product> list = pros.findAll();
         return Response.status(200).entity(list).build();
     }
 
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    @Cacheable(value = "myfirstcache", key = "#id")
     public Response get(@PathParam("id") Long id){
-        Optional<Product> p = repo.findById(id);
-        if(p.isPresent()){
+        Product p = pros.findById(id);
+        if(p!=null){
             return Response.status(200).entity(p).build();
         }
-        return Response.status(200).build();
+        return Response.status(404).build();
     }
 
     @POST
