@@ -1,12 +1,13 @@
-package com.example.restwithdata.entity;
+package com.example.restwithdata.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Entity
-public class Product {
+public class Product implements Model, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id;

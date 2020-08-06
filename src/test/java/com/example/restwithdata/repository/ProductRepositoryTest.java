@@ -1,8 +1,7 @@
 package com.example.restwithdata.repository;
 
-import com.example.restwithdata.entity.Product;
+import com.example.restwithdata.model.Product;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,14 +1,11 @@
 package com.example.restwithdata.service;
 
-import com.example.restwithdata.entity.Product;
+import com.example.restwithdata.model.Product;
 import com.example.restwithdata.repository.ProductRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Answers;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import javax.ws.rs.core.Response;
