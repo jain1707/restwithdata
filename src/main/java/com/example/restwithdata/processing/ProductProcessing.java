@@ -24,7 +24,7 @@ public class ProductProcessing {
         return null;
     }
 
-    @Cacheable(value="myfirstcache",key="findAll")
+    @Cacheable(value="myfirstcache1",key="findAll")
     public List<Product> findAll() {
       //  return repo.findAll();
         return new ArrayList<Product>(repo.findAll());
