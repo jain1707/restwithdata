@@ -17,8 +17,15 @@ public class ProductProcessing {
     @Autowired
     ProductRepository repo;
 
-    @Cacheable(value = "myfirstcache", key = "#id")
+    @Cacheable(value = "myfirstcache", key = "#id", unless = "#result==null")
     public Product findById(Long id) {
+        Optional<Product> o= repo.findById(id);
+        if(o.isPresent()) return o.get();
+        return null;
+    }
+
+    @Cacheable(value = "myfirstcache", unless = "#result==null")
+    public Product findById1(Long id) {
         Optional<Product> o= repo.findById(id);
         if(o.isPresent()) return o.get();
         return null;
@@ -29,4 +36,11 @@ public class ProductProcessing {
       //  return repo.findAll();
         return new ArrayList<Product>(repo.findAll());
     }
-}
+
+    @Cacheable(value="myfirstcache")
+    public List<Product> findAll1() {
+        //  return repo.findAll();
+        return new ArrayList<Product>(repo.findAll());
+    }
+
+ }

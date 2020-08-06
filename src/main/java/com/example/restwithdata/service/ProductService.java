@@ -41,6 +41,25 @@ public class ProductService implements Service<Response,Product,Long> {
         return Response.status(404).build();
     }
 
+    @GET
+    @Path("n")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAll1(){
+        Iterable<Product> list = pros.findAll1();
+        return Response.status(200).entity(list).build();
+    }
+
+    @GET
+    @Path("n/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response get1(@PathParam("id") Long id){
+        Product p = pros.findById1(id);
+        if(p!=null){
+            return Response.status(200).entity(p).build();
+        }
+        return Response.status(404).build();
+    }
+
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
