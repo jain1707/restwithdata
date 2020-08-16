@@ -26,6 +26,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Configuration
 @EnableCaching
@@ -61,6 +62,7 @@ public class RedisConfiguration {
     public RedisTemplate<String,Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         final RedisTemplate<String,Object> redisTemplate = new RedisTemplate<String,Object>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
+        redisTemplate.expire("PRODUCT",10, TimeUnit.MINUTES);
         return redisTemplate;
         /*redisTemplate.setKeySerializer(new StringRedisSerializer());
         redisTemplate.setHashKeySerializer(new GenericToStringSerializer<Object>(Object.class));
