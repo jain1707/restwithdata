@@ -1,10 +1,9 @@
 package com.example.restwithdata.service;
 
 import com.example.restwithdata.model.Product;
-import com.example.restwithdata.processing.ProductProcessing;
+import com.example.restwithdata.processing.ProductCache;
 import com.example.restwithdata.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.*;
@@ -21,7 +20,7 @@ public class ProductService implements Service<Response,Product,Long> {
     ProductRepository repo;
 
     @Autowired
-    ProductProcessing pros;
+    ProductCache pros;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -50,10 +49,21 @@ public class ProductService implements Service<Response,Product,Long> {
     }
 
     @GET
-    @Path("n/{id}")
+    @Path("v1/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response get1(@PathParam("id") Long id){
         Product p = pros.findById1(id);
+        if(p!=null){
+            return Response.status(200).entity(p).build();
+        }
+        return Response.status(404).build();
+    }
+
+    @GET
+    @Path("v2/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response get2(@PathParam("id") Long id){
+        Product p = pros.findById2(id);
         if(p!=null){
             return Response.status(200).entity(p).build();
         }
