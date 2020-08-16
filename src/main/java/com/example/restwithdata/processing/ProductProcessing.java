@@ -17,7 +17,7 @@ public class ProductProcessing {
     @Autowired
     ProductRepository repo;
 
-    @Cacheable(value = "myfirstcache", key = "#id", unless = "#result==null")
+    @Cacheable(value = "myfirstcache", key = "#id", unless = "#result==null", cacheManager = "cacheManager1Hour")
     public Product findById(Long id) {
         Optional<Product> o= repo.findById(id);
         if(o.isPresent()) return o.get();
