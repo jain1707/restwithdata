@@ -62,7 +62,6 @@ public class RedisConfiguration {
     public RedisTemplate<String,Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         final RedisTemplate<String,Object> redisTemplate = new RedisTemplate<String,Object>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
-        redisTemplate.expire("PRODUCT",10, TimeUnit.MINUTES);
         return redisTemplate;
         /*redisTemplate.setKeySerializer(new StringRedisSerializer());
         redisTemplate.setHashKeySerializer(new GenericToStringSerializer<Object>(Object.class));

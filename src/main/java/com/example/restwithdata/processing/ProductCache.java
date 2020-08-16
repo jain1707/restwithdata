@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 @Component
 public class ProductCache {
@@ -31,6 +32,7 @@ public class ProductCache {
 
     @PostConstruct
     private void init(){
+        redisTemplate.expire("PRODUCT",10, TimeUnit.MINUTES);
         this.hashOperations = redisTemplate.opsForHash();
     }
 
