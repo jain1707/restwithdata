@@ -36,14 +36,14 @@ public class ProductCache {
         this.hashOperations = redisTemplate.opsForHash();
     }
 
-    @Cacheable(value = "myfirstcache", key = "#id", unless = "#result==null", cacheManager = "cacheManager1Hour")
+    @Cacheable(value = "productcache", key = "#id", unless = "#result==null", cacheManager = "cacheManager1Hour")
     public Product findById(Long id) {
         Optional<Product> o= repo.findById(id);
         if(o.isPresent()) return o.get();
         return null;
     }
 
-    @Cacheable(value = "cacheV1", unless = "#result==null")
+    @Cacheable(value = "productcache", unless = "#result==null")
     public Product findById1(Long id) {
         Optional<Product> o= repo.findById(id);
         if(o.isPresent()) return o.get();
@@ -61,13 +61,13 @@ public class ProductCache {
         return null;
     }
 
-    @Cacheable(value="myfirstcache",key="#root.methodName")
+    @Cacheable(value="productcache",key="#root.methodName")
     public List<Product> findAll() {
       //  return repo.findAll();
         return new ArrayList<Product>(repo.findAll());
     }
 
-    @Cacheable(value="myfirstcache")
+    @Cacheable(value="productcache")
     public List<Product> findAll1() {
         //  return repo.findAll();
         return new ArrayList<Product>(repo.findAll());
