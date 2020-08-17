@@ -43,7 +43,7 @@ public class ProductCache {
         return null;
     }
 
-    @Cacheable(value = "myfirstcache", unless = "#result==null")
+    @Cacheable(value = "cacheV1", unless = "#result==null")
     public Product findById1(Long id) {
         Optional<Product> o= repo.findById(id);
         if(o.isPresent()) return o.get();
