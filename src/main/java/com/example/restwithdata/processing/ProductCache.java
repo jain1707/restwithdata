@@ -61,7 +61,7 @@ public class ProductCache {
         return null;
     }
 
-    @Cacheable(value="productcache",key="#root.methodName")
+    @Cacheable(value="productcache",key="#root.methodName", cacheManager = "cacheManager")
     public List<Product> findAll() {
       //  return repo.findAll();
         return new ArrayList<Product>(repo.findAll());
