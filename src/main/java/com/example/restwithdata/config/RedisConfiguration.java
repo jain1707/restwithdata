@@ -75,6 +75,7 @@ public class RedisConfiguration {
     }
 
     @Primary
+    @Bean
     public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory){
         return RedisCacheManager.builder(redisConnectionFactory).
                 cacheDefaults(RedisCacheConfiguration.defaultCacheConfig()).build();
